@@ -1,0 +1,4 @@
+i		        19	    int
+loopCount	    20	    int
+numberOfRandoms	25	    int
+randomNumber	32078	int
