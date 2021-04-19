@@ -7,4 +7,4 @@ The class that this repository represents showcases some C++ development skills 
 
 **CREATED:** 6-April-2021
 
-**LAST CONTENT UPDATE:** 5-April-2021
+**LAST CONTENT UPDATE:** 19-April-2021
