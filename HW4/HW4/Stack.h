@@ -35,24 +35,11 @@ public:
 		stackSize = other.stackSize;
 		stackArray = new IncomingClass*[stackSize];
 
-		// Save a reference to the Stack array's data
-		IncomingClass* transferStackArray = new IncomingClass[stackSize];
-
-		// Copy over current data to the transfer Stack array
+		// Copy over the data to the Stack array
 		for (int i = 0; i < stackCount; i++)
 		{
-			transferStackArray[i] = *other.stackArray[i];
+			stackArray[i] = new IncomingClass(*other.stackArray[i]);
 		}
-
-		// Copy over the data to the Stack array
-		for (int i = 0; i < stackSize; i++)
-		{
-			stackArray[i] = new IncomingClass(transferStackArray[i]);
-		}
-
-		// Clean up temporary heap data
-		delete[] transferStackArray;
-		transferStackArray = nullptr;
 	};
 
 	/// <summary>
@@ -89,24 +76,11 @@ public:
 		stackSize = other.stackSize;
 		stackArray = new IncomingClass*[stackSize];
 
-		// Save a reference to the Stack array's data
-		IncomingClass* transferStackArray = new IncomingClass[stackSize];
-
-		// Copy over current data to the transfer Stack array
+		// Copy over the data to the Stack array
 		for (int i = 0; i < stackCount; i++)
 		{
-			transferStackArray[i] = *other.stackArray[i];
+			stackArray[i] = new IncomingClass(*other.stackArray[i]);
 		}
-
-		// Copy over the data to the Stack array
-		for (int i = 0; i < stackSize; i++)
-		{
-			stackArray[i] = new IncomingClass(transferStackArray[i]);
-		}
-
-		// Clean up temporary heap data
-		delete[] transferStackArray;
-		transferStackArray = nullptr;
 
 		return *this;
 	};
@@ -117,10 +91,10 @@ public:
 	~Stack()
 	{
 		// Delete the Stack array's items to prevent memory leaks.
-		for (int i = 0; i < stackSize; i++)
+		for (int i = 0; i < stackCount; i++)
 		{
-			//delete stackArray[i];
-			//stackArray[i] = nullptr;
+			delete stackArray[i];
+			stackArray[i] = nullptr;
 		}
 
 		// Clean up the heap memory Stack array

@@ -2,9 +2,14 @@
 #include "Stack.h"
 #include "Player.h"
 
+// Memory Leak Detection Inclusions
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
 using namespace std;
 
-int main()
+void wrapper()
 {
 	// Your Main.cpp MUST have the following:
 	// Three stacks, each of a different data type. For each, do the following:
@@ -13,7 +18,7 @@ int main()
 	Stack<int> intStack;
 	Stack<char> charStack;
 	Stack<bool> boolStack;
-	
+
 	// Add data to the stack with Push(), print it out using Print(), Pop() some elements from it, and then Print() again to prove that they have been “removed”.
 	cout << endl << endl << endl << "|================INT STACK================|" << endl;
 	cout << "Pushing numbers 1-6 to the Stack..." << endl;
@@ -29,7 +34,7 @@ int main()
 	cout << *intStack.Pop() << " ";
 	cout << *intStack.Pop() << endl << "STACK ITEMS: ";
 	intStack.Print();
-	
+
 	// Add data to the stack with Push(), print it out using Print(), Pop() some elements from it, and then Print() again to prove that they have been “removed”.
 	cout << endl << endl << endl << "|================CHAR STACK================|" << endl;
 	cout << "Pushing letters a-f to the Stack..." << endl;
@@ -73,7 +78,7 @@ int main()
 	
 	// Pop() some values from your new stack, Print() it again, and then set it equal to the original. Print() it a third time.
 	cout << "Popping two Stack items: ";
-	cout << *copyIntStack.Pop() <<  " ";
+	cout << *copyIntStack.Pop() << " ";
 	cout << *copyIntStack.Pop() << endl << "STACK ITEMS: ";
 	copyIntStack.Print();
 	cout << "Copying intStack to copyIntStack with the copy assignment constructor..." << endl;
@@ -113,4 +118,12 @@ int main()
 	copyPlayerStack = playerStack;
 	cout << "STACK ITEMS:\n ";
 	copyPlayerStack.Print();
+}
+
+int main()
+{
+	wrapper();
+
+	// Check for memory leaks
+	_CrtDumpMemoryLeaks();
 }
